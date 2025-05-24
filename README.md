@@ -157,6 +157,62 @@ const result = await Dialogs.prompt(promptOptions);
 
 This method (in this example) takes in one object of type [`IPromptStringOptions`](#ipromptstringoptions), available from the `OptionTypes` namespace.
 
+## AsyncDialog Component
+
+The `AsyncDialog` component is a reusable dialog UI element designed for asynchronous workflows such as confirmations, prompts, or custom forms. It provides a title, customizable content, and two buttons (OK and Cancel), with built-in styling and accessibility considerations.
+
+### Usage
+
+To display a custom `AsyncDialog`, you must use the `Dialog.showAsyncDialog(dialogID)` method. This function takes the `id` of your dialog component and returns a `Promise`.
+
+- If the user clicks the **OK** button, the `Promise` resolves to a `FormData` object.
+- If the user clicks the **Cancel** button or closes the dialog, the `Promise` resolves to `undefined`.
+
+```tsx
+<AsyncDialog
+  id="user-name-dialog"
+  title="Enter Your Name"
+  okText="Submit"
+  cancelText="Cancel"
+>
+  <label htmlFor="username">Name:</label>
+  <input type="text" id="username" name="username" required />
+</AsyncDialog>
+```
+
+Example below, show how to use your custom made dialog inside your code:
+```ts
+// Somewhere in your app logic:
+const formData = await Dialog.showAsyncDialog('user-name-dialog');
+
+if (formData) {
+  const name = formData.get('username');
+  console.log('User entered name:', name);
+} else {
+  console.log('Dialog was cancelled');
+}
+```
+
+### Props
+
+| Prop         | Type              | Optional | Description                                                                 | Default     |
+|--------------|-------------------|----------|-----------------------------------------------------------------------------|-------------|
+| `id`         | `string`          | optional       | The unique identifier for the dialog. This is required by `Dialog.showAsyncDialog`. | —           |
+| `title`      | `string`          | optional       | The title text displayed at the top of the dialog.                         | —           |
+| `children`   | `React.ReactNode` | optional       | The content of the dialog. You can include any valid React elements here.  | —           |
+| `className`  | `string`          | mandatory       | Optional class name(s) to customize the dialog style.                      | `''`        |
+| `okText`     | `string`          | mandatory       | The label for the **OK** button.                                           | `"OK"`      |
+| `cancelText` | `string`          | mandatory       | The label for the **Cancel** button.                                       | `"Cancel"`  |
+
+---
+
+### Behavior
+
+To open and use a custom `AsyncDialog`, you must call the `Dialog.showAsyncDialog` method. This method takes the dialog's `id` as a parameter and returns a `Promise`.
+
+- If the user clicks the **OK** button, the promise resolves with a `FormData` object containing all the form inputs inside the dialog.
+- If the user clicks **Cancel** or closes the dialog, the promise resolves to `undefined`.
+
 ## OptionTypes
 
 The **`OptionTypes`** namespace is a key part of this library. Without it, you are unable to use any of the pre-made dialogs.
