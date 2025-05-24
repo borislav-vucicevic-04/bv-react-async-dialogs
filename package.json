@@ -1,0 +1,38 @@
+{
+  "name": "bv-react-async-dialogs",
+  "version": "1.0.0",
+  "description": "React async dialog",
+  "main": "dist/",
+  "scripts": {
+    "test": "npm test",
+    "build": "tsc",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist/"
+  },
+  "keywords": [
+    "react",
+    "bv-react-async-dialogs",
+    "react-dialogs",
+    "react-dialog",
+    "bv-react-async-dialogs",
+    "async-dialog",
+    "async-dialogs",
+    "dialog",
+    "dialogs"
+  ],
+  "author": "Borislav Vučićević",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^18.0.18",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tsc-hooks": "^1.1.1",
+    "typedoc": "^0.25.12",
+    "typescript": "^4.8.3"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0 <20.0.0"
+  },
+  "files": [
+    "/dist"
+  ]
+}

@@ -1,0 +1,176 @@
+:root {
+  --ad-backdrop-color: rgba(0,0,0,0.5); /* color of the overlay */
+  --ad-padding: 20px; /* all  paddings */
+  --ad-title-backgroundColor: #fefefe;
+  --ad-title-fontSize: 20px;
+  --ad-title-color: #131313;
+  --ad-footer-backgroundColor: #fefefe;
+  --ad-button-height: 50px;
+  --ad-button-fontSize: 20px;
+  --ad-button-hover-filter: brightness(115%);
+  --ad-ok-color: #fefefe;
+  --ad-ok-backgroundColor: #0b57d0;
+  --ad-ok-border: solid 2px #0b57d0;
+  --ad-cancel-color: #131313;
+  --ad-cancel-backgroundColor: #ccc;
+  --ad-cancel-border: solid 2px #ccc;
+  --ad-body-backgroundColor: #fefefe;
+  --ad-body-row-gap: 16px;
+  --ad-body-fontSize: 20px;
+  /* select dialog css */
+  --ad-select-fontSize: 20px;
+  --ad-select-selectorSize: 16px;
+  --ad-select-selectorColor: #0b57d0;
+  /* prompt dialog css */
+  --ad-prompt-fontSize: 20px;
+  --ad-prompt-input-padding: 6px;
+  --ad-prompt-input-outlineColor: #131313;
+  --ad-prompt-input-focus-outlineColor: #0b57d0;
+}
+.async-dialog {
+  font: inherit;
+}
+.async-dialog[open] {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+}
+.async-dialog::backdrop {
+  background-color: var(--ad-backdrop-color);
+  animation: backdrop-fade-in 300ms;
+}
+.async-dialog .ad-wrapper {
+  font: inherit;
+  width: 90%;
+  max-width: 640px;
+  box-sizing: border-box;
+  border-radius: var(--ad-padding);
+  overflow: hidden;
+  position: relative;
+  animation: body-fly-in 300ms;
+}
+.async-dialog .ad-title {
+  font: inherit;
+  background-color: var(--ad-title-backgroundColor);
+  font-size: var(--ad-title-fontSize);
+  color: var(--ad-title-color);
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding: var(--ad-padding);
+
+}
+.async-dialog .ad-buttons {
+  font: inherit;
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+  height: var(--ad-button-height);
+  background-color: var(--ad-footer-backgroundColor);
+  padding: var(--ad-padding);
+  gap: 16px;
+}
+.async-dialog .ad-buttons button {
+  flex: 1;
+  font: inherit;
+  font-size: var(--ad-button-fontSize);
+  border-radius: var(--ad-button-height);
+  border: none;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 300ms;
+}
+.async-dialog .ad-buttons button:focus {
+  outline: none;
+}
+.async-dialog .ad-buttons button:hover {
+  filter: var(--ad-button-hover-filter);
+}
+.async-dialog .ad-buttons button.ad-ok {
+  background-color: var(--ad-ok-backgroundColor);
+  border: var(--ad-ok-border);
+  color: var(--ad-ok-color);
+}
+.async-dialog .ad-buttons button.ad-cancel {
+  background-color: var(--ad-cancel-backgroundColor);
+  border: var(--ad-cancel-border);
+  color: var(--ad-cancel-color);
+}
+.async-dialog .ad-body {
+  background-color: var(--ad-body-backgroundColor);
+  padding: 0 var(--ad-padding);
+  overflow: auto;
+  max-height: calc(80vh - var(--ad-title-fontSize) - var(--ad-button-height) - 4 * var(--ad-padding));
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  font: inherit;
+  font-size: var(--ad-body-fontSize);
+}
+@keyframes backdrop-fade-in {
+  0% {
+    background-color: rgb(0 0 0 / 0%);
+  }
+  100% {
+    background-color: var(--ad-backdrop-color);
+  }
+}
+@keyframes body-fly-in {
+  from {
+    top: -100%;
+    opacity: 0;
+  }
+  to {
+    top: 0%;
+    opacity: 1;
+  }
+}
+/* select styles */
+.ad-select label {
+  display: flex;
+  align-items: center;
+  font: inherit;
+  font-size: var(--ad-select-fontSize);
+  gap: 5px;
+  cursor: pointer;
+}
+.ad-select input[type=radio],
+.ad-select input[type=checkbox] {
+  height: var(--ad-select-selectorSize);
+  width: var(--ad-select-selectorSize);
+  accent-color: var(--ad-select-selectorColor);
+  background-color: red;
+}
+/* prompt styles */
+.ad-prompt input {
+  font: inherit;
+  font-size: var(--ad-prompt-fontSize);
+  padding: var(--ad-prompt-input-padding);
+  border-radius: var(--ad-prompt-input-padding);
+  border: none;
+  outline:  solid 2px var(--ad-prompt-input-outlineColor);
+  margin-bottom: 5px;
+}
+.ad-prompt input:focus {
+  outline: solid 2px var(--ad-prompt-input-focus-outlineColor);
+}
+@media screen and (max-height: 320px) {
+  :root {
+    --ad-padding: 12px; /* all  paddings */
+    --ad-title-fontSize: 16px;
+    --ad-button-height: 32px;
+    --ad-button-fontSize: 12px;
+    --ad-body-row-gap: 12px;
+    --ad-body-fontSize: 12px;
+    /* select dialog css */
+    --ad-select-fontSize: 12px;
+    --ad-select-selectorSize: 12px;
+    /* prompt dialog css */
+    --ad-prompt-fontSize: 12px;
+    --ad-prompt-input-padding: 4px;
+  }
+}
