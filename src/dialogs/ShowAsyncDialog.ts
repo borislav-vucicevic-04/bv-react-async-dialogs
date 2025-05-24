@@ -7,8 +7,11 @@
  */
 const showAsyncDialog = async (dialogID: string): Promise<FormData | undefined> => {
   var ReturnState = undefined;
-  if(document.getElementById(dialogID)) throw new Error(`There is not a single dialog with "${dialogID}" as their ID!`);
-  var dialog = document.getElementById(dialogID)! as HTMLDialogElement;
+  let element = document.getElementById(dialogID);
+  if(!element) throw new Error(`There is not a single dialog with "${dialogID}" as their ID!`);
+  
+  const dialog = element as HTMLDialogElement;
+
   try {
     await new Promise((resolve: any, reject: any) => {
       dialog.showModal()
