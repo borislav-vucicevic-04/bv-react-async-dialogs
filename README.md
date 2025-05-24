@@ -13,6 +13,10 @@
   - [Confirm Dialog](#confirm-dialog)
   - [Select Dialog](#select-dialog)
   - [Prompt Dialog](#prompt-dialog)
+- [AsyncDialog Component](#asyncDialog-component)
+  - [Building Custom Dialog](#building-custom-dialog)
+  - [Props](#props)
+  - [Behavior](#behavior)
 - [OptionTypes](#optiontypes)
   - [IDefaultOptions](#idefaultoptions)
   - [IAlertOptions](#ialertoptions)
@@ -161,7 +165,7 @@ This method (in this example) takes in one object of type [`IPromptStringOptions
 
 The `AsyncDialog` component is a reusable dialog UI element designed for asynchronous workflows such as confirmations, prompts, or custom forms. It provides a title, customizable content, and two buttons (OK and Cancel), with built-in styling and accessibility considerations.
 
-### Usage
+### Building Custom Dialog
 
 To display a custom `AsyncDialog`, you must use the `Dialog.showAsyncDialog(dialogID)` method. This function takes the `id` of your dialog component and returns a `Promise`.
 
